@@ -14,26 +14,57 @@ class Rout implements RoutInterface
 			$this->view = $this->routs[$requestPath][0];
 			$class = $this->routs[$requestPath][1];
 			$method = $this->routs[$requestPath][2];
+			$title = $this->routs[$requestPath][3];
 		}
 
-		if(isset($class) && isset($method)){
+		$this->requireHeader($this->view, $title);
+
+		if(!empty($class) && !empty($method)){
 			$obModel = new $class;
 			$arData = $obModel->$method($requestData);
 		}
 
+		$this->requireView($this->view, $requestPath);
 
-		echo'<pre>';
-		var_dump($this->view);
-		echo "</pre><br><br><br>";
-		print_r($requestPath);
-		print_r($requestData);
-		// TODO: Implement start() method.
-//		require_once
+		$this->requireFooter($this->view);
 	}
 
-	protected function get404view()
+	protected function requireHeader($view, $title)
 	{
+		$headerPath = DOCUMENT_ROOT . "/resources/views/$view";
+		while (!file_exists($headerPath . '/header.php')){
+			$reg = '/(\/[^\/]*)$/';
+			$headerPath = preg_replace($reg, '', $headerPath);
+		}
+		require_once $headerPath . '/header.php';
+	}
 
+	protected function requireView($view, $requestPath)
+	{
+		$viewTemplatePath = DOCUMENT_ROOT . "/resources/views/$view/template.php";
+		if(file_exists($viewTemplatePath)){
+			require_once $viewTemplatePath;
+		}
+		else{
+			$this->require404($requestPath);
+		}
+	}
+
+	protected function requireFooter($view)
+	{
+		$footerPath = DOCUMENT_ROOT . "/resources/views/$view";
+		while (!file_exists($footerPath . '/footer.php')){
+			$reg = '/(\/[^\/]*)$/';
+			$footerPath = preg_replace($reg, '', $footerPath);
+		}
+		require_once $footerPath . '/footer.php';
+	}
+
+	protected function require404($requestPath)
+	{
+		$pageName = $_SERVER['HTTP_HOST'] . $requestPath;
+		$view404Path = DOCUMENT_ROOT . "/resources/views/404.php";
+		require_once $view404Path;
 	}
 
 	public function __construct($routs)

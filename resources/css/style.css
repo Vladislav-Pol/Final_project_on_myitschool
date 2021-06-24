@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.content{
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header{
+    margin: 5px auto 20px;
+}
+
+.header-nav{
+    display: flex;
+}
+
+.logo{
+    height: 80px;
+}
+
+.header .logo .logo-img{
+    height: 100%;
+    margin-right: 10px;
+}
+
+.menu{
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.menu-item{
+    list-style: none;
+    margin-left: 20px;
+    font-size: 15px;
+    font-family: "Lato", "SansSerif";
+    font-weight: bold;
+    color: rgb(65, 65, 65);
+}
+
+.welcome{
+    position: relative;
+    height: 60.02vw;
+}
+
+.welcome-image{
+    position: absolute;
+    width: 100vw;
+    z-index: -1;
+}
+
+.advertising{
+    padding-top: 20px;
+}
+.description-title{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 3px #555;
+}
+
+.button-book{
+    text-align: center;
+}
+
+.button-book a{
+    margin-top: 15px;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 8px;
+    color: white;
+    background-color: #11f;
+}
+

@@ -1,55 +1,51 @@
-<?php
-global $dirContent;
-?>
-<div class="fileMen content"> <!-- todo перелапатить код страницы-->
+
+<div class="fileMen content">
 	<h2>Файловая стуктура сайта</h2>
 	<div class="functions">
-		<a href="./" class="button">Домой</a>
-		<a href="./?path=<?="$path&create="?>" class="button">Создать</a>
-		<a href="/admin/explorer/uploadFile/" class="button">Загрузить файл</a>
+		<a href="/admin/" class="button">Домой</a>
+		<a href="/admin/explorer/?path=<?="{$arData['path']}&create="?>" class="button">Создать</a>
+		<a href="/admin/explorer/uploadFile/?path=<?="{$arData['path']}&upload="?>" class="button">Загрузить файл</a>
 	</div>
-
 </div>
 <div class="main content">
-	<span><?=$path;?></span><br/><br/>
+	<span><?=$arData['path'];?></span><br/><br/>
 	<table class="elementList">
 		<tbody>
-		<? foreach ($dirContent as $key => $item):
-			if($key < 1) continue;?>
+		<?php foreach($arData['dirContent'] as $item):?>
 			<tr>
 				<td class="actions">
-					<?if($item != ".."):?>
-						<a href="./?path=<?="$path&del=$item"?>"><img src="/image/delete.png" alt="delete"></a>
-					<?endif;?>
-					<?if(ExplorerModel::canEdit($fullPath . $item)):?>
-						<a href="./?path=<?="$path&edit=$item"?>"><img src="/image/edit.png" alt="edit"></a>
-					<?endif;?>
+					<?php if($item['name'] != ".."):?>
+						<a href="/admin/explorer/?path=<?="{$arData['path']}&del={$item['name']}"?>"><img src="/resources/images/admin/delete.png" alt="delete"></a>
+					<?php endif;?>
+					<?php if($item['canEdit']):?>
+						<a href="/admin/explorer/?path=<?="{$arData['path']}&edit={$item['name']}"?>"><img src="/tmp/image/edit.png" alt="edit"></a>
+					<?php endif;?>
 				</td>
 				<td class="element">
-					<?if(is_dir($fullPath . $item)):?>
-						<a href="./?path=<?=ExplorerModel::cleanPath($path . "/" . $item)?>">
-							<img src="/image/folder.png" alt="folder">
-							<?= $item ?>
+					<?php if($item['elementType'] == 'dir'):?>
+						<a href="/admin/explorer/?path=<?=$item['elementPath']?>">
+							<img src="/resources/images/admin/folder.png" alt="folder">
+							<?=$item['name']?>
 						</a>
-					<?else:?>
+					<?php elseif($item['elementType'] == 'file'):?>
 						<p>
-							<img src="/image/file.png" alt="file">
-							<?= $item ?>
+							<img src="/resources/images/admin/file.png" alt="file">
+							<?=$item['name']?>
 						</p>
-					<?endif;?>
+					<?php endif;?>
 				</td>
 				<td>
 					<div class="size">
-						<div><?=ExplorerModel::getFileSize($fullPath . $item)?></div>
+						<div><?=$item['elementSize']?></div>
 					</div>
 				</td>
 				<td>
 					<div class="date">
-						<div><?=ExplorerModel::getFileDate($fullPath . $item)?></div>
+						<div><?=$item['elementDate']?></div>
 					</div>
 				</td>
 			</tr>
-		<?endforeach; ?>
+		<?php endforeach; ?>
 		</tbody>
 	</table>
 

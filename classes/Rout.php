@@ -10,26 +10,32 @@ class Rout implements RoutInterface
 
 	public function start($requestPath, $requestData)
 	{
+		$arData = [];
+
 		if(array_key_exists($requestPath, $this->routs)) {
 			$this->view = $this->routs[$requestPath][0];
 			$class = $this->routs[$requestPath][1];
 			$method = $this->routs[$requestPath][2];
-			$title = $this->routs[$requestPath][3];
+			$arData['title'] = $this->routs[$requestPath][3];
 		}
 
-		$this->requireHeader($this->view, $title);
+		if(!empty($class)){
+			$obModel = new $class($requestData);
 
-		if(!empty($class) && !empty($method)){
-			$obModel = new $class;
-			$arData = $obModel->$method($requestData);
+			if(!empty($method)){
+				$arData = array_merge($arData, $obModel->$method($requestData));
+			}
 		}
 
-		$this->requireView($this->view, $requestPath);
+
+		$this->requireHeader($this->view, $arData);
+
+		$this->requireView($this->view, $arData, $requestPath);
 
 		$this->requireFooter($this->view);
 	}
 
-	protected function requireHeader($view, $title)
+	protected function requireHeader($view, $arData)
 	{
 		$headerPath = DOCUMENT_ROOT . "/resources/views/$view";
 		while (!file_exists($headerPath . '/header.php')){
@@ -39,7 +45,7 @@ class Rout implements RoutInterface
 		require_once $headerPath . '/header.php';
 	}
 
-	protected function requireView($view, $requestPath)
+	protected function requireView($view, $arData, $requestPath)
 	{
 		$viewTemplatePath = DOCUMENT_ROOT . "/resources/views/$view/template.php";
 		if(file_exists($viewTemplatePath)){

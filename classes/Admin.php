@@ -9,22 +9,20 @@ use \MyProject\classes\Explorer;
 
 class Admin
 {
-	const FILE_TYPE = [
+	const FILE_TYPES = [
 		'folder' => 'Папка',
 		'.txt' => 'Файл .txt',
 		'.html' => 'Файл .html',
 		'.css' => 'Файл .css',
-		'.js' => 'Файл .js'
+		'.js' => 'Файл .js',
+		'.php' => 'Файл .php',
 	];
 	public array $arData = [];
-	public string $path = '';
-	protected bool $edit = false;
 
-	public function explorer($arParams)
+	public function explorer()
 	{
-
-		$path = $this->path;
-		$fullPath = DOCUMENT_ROOT . $path . "/";
+		$path = $this->arData['path'];
+		$fullPath = $this->arData['fullPath'];
 
 		$dirContent = (scandir(realpath($fullPath)));
 		$content = [];
@@ -32,7 +30,7 @@ class Admin
 			if($item == '.')continue;
 
 			$content[$key]['name'] = $item;
-			$content[$key]['canEdit'] = (Explorer::canEdit($fullPath . $item, self::FILE_TYPE)) ? true : false;
+			$content[$key]['canEdit'] = (Explorer::canEdit($fullPath . $item, self::FILE_TYPES)) ? true : false;
 
 			$elementPath = $fullPath . $item;
 			if(is_dir($elementPath)){
@@ -47,17 +45,23 @@ class Admin
 		}
 
 		$this->arData['dirContent'] = $content;
-		$this->arData['path'] = $path;
-		$this->arData['fullPath'] = $fullPath;
 
 		return $this->arData;
 	}
 
-	protected function createEdit($arParams)
+	public function createEdit($arParams)
 	{
-		if(!isset($_REQUEST['path']))
-			header('Location: ./index.php');
+		$fullPath = $this->arData['fullPath'];
 
+		if(!isset($arParams['path'])) {
+			header('Location: /admin/explorer/');
+			die();
+		}
+
+		$heading = 'Создание нового элемента';
+		$edit = '';
+		$fileType = '';
+		$fileContent = '';
 		//Подготовка данных для редактирования элемента
 		if (isset($arParams['edit'])) {
 			$edit = $arParams['edit'];
@@ -67,38 +71,54 @@ class Admin
 				$edit = pathinfo($edit, PATHINFO_FILENAME);
 				$fileContent = file_get_contents($fullFileName);
 			}
+			$heading = 'Редактирование элемента';
 		}
-
-//Элемент для создания
-		$create = isset($_REQUEST['create']) ? true : false;
 
 //Изменение элемента
-		if (isset($_REQUEST['saveElement'])) {
-			if ($_REQUEST['extension'] == 'folder')
-				ExplorerModel::renameFolder($fullPath . $_REQUEST['oldName'], $fullPath . $_REQUEST['fileName']);
+		if (isset($arParams['saveElement'])) {
+			if ($arParams['extension'] == 'folder')
+				Explorer::renameFolder($fullPath . $arParams['oldName'], $fullPath . $arParams['fileName']);
 			else
-				ExplorerModel::editFile($fullPath, $_REQUEST['oldName'] . $_REQUEST['oldFileExtension'], $_REQUEST['fileName'] . $_REQUEST['extension'], $_REQUEST['fileContent'] ?? "");
+				Explorer::editFile($fullPath, $arParams['oldName'] . $arParams['oldFileExtension'], $arParams['fileName'] . $arParams['extension'], $arParams['fileContent'] ?? "");
 		} //Создание элемента
-		elseif (isset($_REQUEST['saveNewElement'])) {
-			if ($_REQUEST['extension'] == 'folder')
-				ExplorerModel::createNewFolder($fullPath, $_REQUEST['fileName']);
+		elseif (isset($arParams['saveNewElement'])) {
+			if ($arParams['extension'] == 'folder')
+				Explorer::createNewFolder($fullPath, $arParams['fileName']);
 			else
-				ExplorerModel::createNewFile($fullPath, $_REQUEST['fileName'], $_REQUEST['extension'], $_REQUEST['fileContent'] ?? "");
+				Explorer::createNewFile($fullPath, $arParams['fileName'], $arParams['extension'], $arParams['fileContent'] ?? "");
 		} //Удаление папки или файла
-		elseif (isset($_REQUEST['del'])) {
-			ExplorerModel::deleteElement($fullPath . $_REQUEST['del']);
+		elseif (isset($arParams['del'])) {
+			Explorer::deleteElement($fullPath . $arParams['del']);
 		} //Запись загруженного файла
-		elseif (isset($_REQUEST['isUpload'])) {
+		elseif (isset($arParams['isUpload'])) {
 			require_once './functions/upload.php';
-			ExplorerModel::saveUploadFile($fullPath);
+			Explorer::saveUploadFile($fullPath);
 		}
 
+		$saveType = isset($arParams['create']) ? 'saveNewElement' : 'saveElement';
+
+		$this->arData['fileType'] = $fileType;
+		$this->arData['fileContent'] = $fileContent;
+		$this->arData['FILE_TYPES'] = self::FILE_TYPES;
+		$this->arData['buttonSaveName'] = $saveType;
+		$this->arData['heading'] = $heading;
+		$this->arData['edit'] = $edit;
+
+		return $this->arData;
+	}
+
+	public function uploadFile($arParams)
+	{
+		if (isset($arParams['isUpload'])) {
+			Explorer::saveUploadFile($this->arData['fullPath']);
+		}
 
 	}
 
-	public function __construct($requestData)
+	public function __construct($arParams)
 	{
-		$this->path = $_REQUEST['path'] ?? "";
+		$this->arData['path'] = $arParams['path'] ?? "";
+		$this->arData['fullPath'] = DOCUMENT_ROOT . $this->arData['path'] . "/";
 
 //		User::checkAccess();  todo реализовать авторизацию и раскоментировать
 	}

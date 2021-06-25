@@ -15,10 +15,10 @@
 			<a href="#top" title="top"><img class="logo-img" src="/resources/images/logo.jpg" alt="Company logo"></a>
 		</div>
 		<ul class="menu">
-			<li class="menu-item"><a href="/" title="Главная">Главная</a></li>
-			<li class="menu-item"><a href="#" title="Главная">Контакты</a></li>
-			<li class="menu-item"><a href="#" title="Главная">Номера / дома</a></li>
-			<li class="menu-item"><a href="#" title="Главная">Услуги</a></li>
+			<?php $arMenu = include (DOCUMENT_ROOT . '/resources/includes/top_menu.php')?>
+			<?php foreach ($arMenu as $path => $name):?>
+				<li class="menu-item"><a href="<?=$path?>" title="<?=$name?>"><?=$name?></a></li>
+			<?php endforeach;?>
 		</ul>
 	</div>
 </div>

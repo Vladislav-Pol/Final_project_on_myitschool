@@ -71,8 +71,11 @@ class Explorer
 // --- Переименование каталога ---
 	public static function renameFolder($oldElementName, $newElementName)
 	{
-		if (file_exists($oldElementName) && !file_exists($newElementName))
-			rename($oldElementName, $newElementName);
+		if (file_exists($oldElementName) && !file_exists($newElementName)
+		&& rename($oldElementName, $newElementName)){
+			header("Location: /admin/explorer/?path={$_REQUEST['path']}"); //todo путь для редиректа передать в функцию
+			die();
+		}
 	}
 
 // --- Изменение файла ---
@@ -106,7 +109,7 @@ class Explorer
 	}
 
 //Сохранение загруженного файла
-	function saveUploadFile($fullPath)
+	public static function saveUploadFile($fullPath)
 	{
 		if (!empty($_FILES['uploadFiles']['name'])) {
 			$arFiles = $_FILES['uploadFiles'];

@@ -3,7 +3,7 @@
 	<h2>Файловая стуктура сайта</h2>
 	<div class="functions">
 		<a href="/admin/" class="button">Домой</a>
-		<a href="/admin/explorer/?path=<?="{$arData['path']}&create="?>" class="button">Создать</a>
+		<a href="/admin/explorer/create_edit/?path=<?="{$arData['path']}&create="?>" class="button">Создать</a>
 		<a href="/admin/explorer/uploadFile/?path=<?="{$arData['path']}&upload="?>" class="button">Загрузить файл</a>
 	</div>
 </div>
@@ -18,7 +18,7 @@
 						<a href="/admin/explorer/?path=<?="{$arData['path']}&del={$item['name']}"?>"><img src="/resources/images/admin/delete.png" alt="delete"></a>
 					<?php endif;?>
 					<?php if($item['canEdit']):?>
-						<a href="/admin/explorer/?path=<?="{$arData['path']}&edit={$item['name']}"?>"><img src="/tmp/image/edit.png" alt="edit"></a>
+						<a href="/admin/explorer/create_edit/?path=<?="{$arData['path']}&edit={$item['name']}"?>"><img src="/resources/images/admin/edit.png" alt="edit"></a>
 					<?php endif;?>
 				</td>
 				<td class="element">

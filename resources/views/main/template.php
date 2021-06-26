@@ -7,5 +7,5 @@
 	</div>
 </div>
 
-<div>This is first page our hotel`s site.</div>
+
 

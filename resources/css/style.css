@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
-
+/*@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Open sans';
 }
 
 a{
@@ -25,6 +26,9 @@ a{
 
 .header-nav{
     display: flex;
+    color: white;
+    background-color: #272E38;
+    padding-bottom: 20px;
 }
 
 .logo{
@@ -45,10 +49,10 @@ a{
 .menu-item{
     list-style: none;
     margin-left: 20px;
-    font-size: 15px;
-    font-family: "Lato", "SansSerif";
-    font-weight: bold;
-    color: rgb(65, 65, 65);
+    font-size: 14px;
+    font-family: "Open sans";
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
 .welcome{
@@ -84,5 +88,60 @@ a{
     border-radius: 8px;
     color: white;
     background-color: #11f;
+}
+
+/**
+Page contacts
+ */
+.contacts_title{
+    width: 240px;
+    margin: 30px auto;
+    border: 1px solid rgb(39, 46, 56);
+}
+
+ .contacts_title h1{
+     padding: 5px 10px;
+     text-transform: uppercase;
+     text-align: center;
+     font-size: 22px;
+     font-weight: 400;
+     letter-spacing: 0.3em;
+ }
+
+ .description{
+     margin: 20px auto 30px;
+     max-width: 75%;
+     text-align: center;
+    font-style: italic;
+ }
+
+.left_fields, .right_fields{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+.form_item{
+    width: 95%;
+    margin-top: 5px;
+    padding: 3px 3px 3px 24px;
+    border: 2px solid rgb(39, 46, 56);
+}
+
+textarea.form_item{
+    height: 85px;
+}
+
+.form_item.button{
+    padding: 3px;
+    color: white;
+    background-color: rgb(39, 46, 56);
+    width: 125px;
+}
+
+textarea.form_item, .form_item.button{
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
 }
 

@@ -12,7 +12,7 @@
 	<a name="top"></a>
 	<div class="header-nav">
 		<div class="logo">
-			<a href="#top" title="top"><img class="logo-img" src="/resources/images/logo.jpg" alt="Company logo"></a>
+			<a href="#top" title="top"><img class="logo-img" src="/resources/images/logo.png" alt="Company logo"></a>
 		</div>
 		<ul class="menu">
 			<?php $arMenu = include (DOCUMENT_ROOT . '/resources/includes/top_menu.php')?>
@@ -22,5 +22,4 @@
 		</ul>
 	</div>
 </div>
-<main>
-
+<main class="content">

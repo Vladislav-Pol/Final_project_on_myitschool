@@ -120,7 +120,7 @@ abstract class Abstruct_DB
 
 	protected function __construct()
 	{
-		$this->config = require $_SERVER['DOCUMENT_ROOT'] . '/tmp/db_config.php';
+		$this->config = require $_SERVER['DOCUMENT_ROOT'] . '/db_config.php';
 		$this->dbh = new \PDO('mysql:host=' . $this->config['hostname'] . ';dbname=' . $this->config['database'] . ';port=' . $this->config['port'], $this->config['username'], $this->config['password']);
 	}
 

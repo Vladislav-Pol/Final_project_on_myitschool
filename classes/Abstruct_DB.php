@@ -75,7 +75,7 @@ abstract class Abstruct_DB
 			$i = 0;
 			foreach ($arFilter as $filter) {
 				$i++;
-				$stmt->bindParam(":filter$i", $filter[2], PDO::PARAM_STR, 32);
+				$stmt->bindParam(":filter$i", $filter[2], \PDO::PARAM_STR, 32);
 			}
 		}
 

@@ -4,6 +4,9 @@ RewriteBase /
 RewriteCond %{REQUEST_URI} ^[^\.]*[^\/]$
 RewriteRule (.*) $1/ [L]
 
+RewriteCond %{REQUEST_URI} ^/room/[\d]+
+RewriteRule ^(room/)(.*) index.php?page=/$1/&room_id=$2 [QSA]
+
 RewriteCond %{REQUEST_URI} !/resources/(css.*)|(js.*)|(images.*)
 RewriteCond %{REQUEST_URI} !/tmp/.*
 RewriteRule (.*) index.php?page=/$1 [QSA]

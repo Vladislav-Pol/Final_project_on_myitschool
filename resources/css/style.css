@@ -393,5 +393,10 @@ footer
     object-fit: cover;
 }
 
+.rooms_list .room_item img{
+    width: 25%;
+}
 
-
+.rooms_list .room_item .description{
+    display: inline-block;
+}

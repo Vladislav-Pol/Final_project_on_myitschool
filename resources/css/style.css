@@ -12,7 +12,7 @@ a {
     color: inherit;
 }
 
-/*/////////////////////*/
+/*burger_menu*/
 .burger_menu{
     z-index: 2;
 }
@@ -95,7 +95,8 @@ ul.menu li a{
 ul.menu li:not(:last-child){
     margin-right: 35px;
 }
-/*/////////////////////*/
+/* end burger_menu*/
+
 main {
     min-height: calc(100vh - 236px);
 }
@@ -187,16 +188,14 @@ main {
     background-color: #11f;
 }
 
-.contacts_title,
-.about_title,
+.page_title,
 .title_label{
     width: 240px;
     margin: 30px auto;
     border: 1px solid #272E38;
 }
 
-.about_title h1,
-.contacts_title h1,
+.page_title h1,
 .title_label{
     padding: 5px 10px;
     text-transform: uppercase;
@@ -338,6 +337,7 @@ footer
     max-height: 350px;
     border: 1px solid black;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .about .container .title_label{
@@ -371,6 +371,26 @@ footer
     margin-top: 10px;
     width: 24%;
     padding-left: 1.3em;
+}
+
+.gallery.container{
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.gallery.container .image{
+    margin-bottom: 10px;
+    width: 23%;
+    height: 20vw;
+    background-color: #ccc;
+}
+
+.gallery.container .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 

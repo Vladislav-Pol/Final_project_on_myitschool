@@ -1,5 +1,5 @@
 <div class="contacts_head">
-	<div class="contacts_title">
+	<div class="page_title">
 		<h1>Контакты</h1>
 	</div>
 	<div class="description">Если у вас есть вопросы, пожалуйста, свяжитесь с нами по телефону, электронной почте или заполните контактную форму.  Всегда рады вам!</div>

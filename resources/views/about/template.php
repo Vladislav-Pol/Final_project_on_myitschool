@@ -1,5 +1,5 @@
 <div class="about about_head">
-	<div class="about_title">
+	<div class="page_title">
 		<h1>О нас</h1>
 	</div>
 	<div class="container">

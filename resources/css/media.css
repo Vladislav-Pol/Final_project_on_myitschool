@@ -1,0 +1,123 @@
+@media (max-width: 1000px) {
+    .burger_menu, input[type = checkbox]#burgerCheck {
+        display: block;
+    }
+
+    input[type = checkbox]#burgerCheck:checked, input[type = checkbox]#burgerCheck:checked + .burger_menu {
+        position: fixed;
+        right: 5vw;
+    }
+
+    ul.menu {
+        display: none;
+    }
+
+    input[type = checkbox]:checked ~ .menu {
+        display: flex;
+    }
+
+    .header_tel{
+        margin: auto auto 0;
+        padding-right: 134px;
+    }
+
+    main {
+        min-height: calc(100vh - 324px);
+    }
+
+    /*
+    footer
+    */
+    .footer .block:nth-child(2n-1) {
+        width: 49%;
+    }
+
+    .footer .separator:nth-last-child(4n+1) {
+        background-color: transparent;
+    }
+
+    .about .container{
+        display: block;
+    }
+
+    .about .container .image{
+        margin-top: 50px;
+    }
+
+    .about .container .image .foto{
+        width: 50vw;
+        height: 50vw;
+    }
+
+    .about.services ul{
+        width: 35%;
+    }
+}
+
+@media (max-width: 720px) {
+    /*
+    contacts
+    */
+    .contact_info {
+        display: block;
+    }
+
+    .left_half, .right_half {
+        width: 100%;
+        text-align: center;
+    }
+
+    textarea.form_item, .form_item.button {
+        display: inline;
+    }
+
+    .contact_info .left_half,
+    .contact_info .right_half {
+        width: 100%;
+    }
+
+    .about.services ul{
+        width: 45%;
+    }
+}
+
+@media (max-width: 610px) {
+    .content {
+        width: 100%;
+    }
+
+    .about .container .title_label{
+        position: relative;
+        margin-top: 5px;
+        left: unset;
+    }
+
+    .about.services ul{
+        margin-left: 10%;
+        width: 45%;
+    }
+
+    .footer .block:nth-child(2n-1) {
+        width: 90%;
+    }
+
+    .footer .separator:nth-last-child(n+2) {
+        display: inherit;
+        width: 30%;
+        height: 1px;
+        background-color: white;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .about.services ul{
+        width: 75%;
+    }
+
+    .header_tel{
+        text-align: center;
+        font-size: 11px;
+    }
+}
+

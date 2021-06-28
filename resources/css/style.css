@@ -154,17 +154,19 @@ main {
 
 .welcome {
     position: relative;
-    height: 60.02vw;
+    /*height: 100%;*/
 }
 
 .welcome-image {
-    position: absolute;
-    width: 100vw;
+    /*position: absolute;*/
+    width: 100%;
     z-index: -1;
 }
 
 .advertising {
-    padding-top: 20px;
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 297px);
 }
 
 .description-title {
@@ -205,7 +207,7 @@ main {
     letter-spacing: 0.3em;
 }
 
-.description {
+.contacts_head .description {
     margin: 20px auto 30px;
     max-width: 75%;
     text-align: center;
@@ -393,10 +395,96 @@ footer
     object-fit: cover;
 }
 
-.rooms_list .room_item img{
-    width: 25%;
+.rooms_list .room_item .head_image{
+    height: 170px;
+    width: 240px;
+    object-fit: cover;
+}
+
+.room_item{
+    margin: 30px 0;
 }
 
 .rooms_list .room_item .description{
     display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+.rooms_list .room_item .description .room_name{
+    text-align: left;
+}
+
+.rooms_list .room_item .room_name h2{
+
+}
+
+.rooms_list .room_item .description p{
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.rooms_list .room_item .description ul{
+    margin: 15px auto 15px 20px;
+    font-size: 14px;
+}
+
+.description_separator,
+.item_separator{
+    background-color: rgb(39, 46, 56);
+}
+
+.rooms .description_separator{
+    width: 90%;
+    height: 1px;
+}
+
+.rooms .service_icons .icon{
+    width: 40px;
+    height: 40px;
+    background-image: url("/resources/images/rooms/service_icons.svg");
+    background-size: 500%;
+    float: left;
+}
+
+.rooms .service_icons .icon.conditioner{
+    background-position: 0 -120px;
+}
+
+.rooms .service_icons .icon.bathtub{
+    background-position: -40px -40px;
+}
+
+.rooms .service_icons .icon.shower{
+    background-position: -120px -120px;
+}
+
+.rooms .service_icons .icon.fan{
+    background-position: -40px -120px;
+}
+
+.rooms .service_icons .icon.fridge{
+    background-position: -80px -120px;
+}
+.rooms .service_icons .icon.tv{
+    background-position: 0 -120px;
+}
+.rooms .service_icons .icon.fridge{
+    background-position: -80px -160px;
+}
+.rooms .service_icons .icon.no_smoking{
+    background-position: -80px -160px;
+}
+
+.rooms .service_icons .icon.safe{
+    background-position: -120px -160px;
+}
+
+.rooms .service_icons .icon.hairdryer{
+    background-position: -160px -120px;
+}
+
+.rooms .item_separator{
+    width: 100%;
+    height: 1px;
 }

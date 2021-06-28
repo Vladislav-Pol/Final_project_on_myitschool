@@ -1,6 +1,8 @@
 <?php
 namespace MyProject\classes;
 use \MyProject\classes\RoutInterface;
+use \MyProject\classes\User;
+
 
 class Rout implements RoutInterface
 {
@@ -11,6 +13,22 @@ class Rout implements RoutInterface
 	public function start($requestPath, $requestData)
 	{
 		$arData = [];
+
+		$obUser = new User;
+		$userData = $obUser->check($requestData);
+		$arData = array_merge_recursive($arData, $userData);
+
+		$arData['top_menu'] = include (DOCUMENT_ROOT . '/resources/includes/top_menu.php') ?? [];
+		if ($arData['user']['auth']){
+			if (in_array('admin', $arData['user']['groups'])) {
+				$arData['top_menu']['/admin/'] = 'Админка';
+			}
+			$arData['top_menu']['/logout/'] = 'Выйти';
+		} else {
+			$arData['top_menu']['/auth/'] = 'Войти';
+		}
+
+
 
 		if(array_key_exists($requestPath, $this->routs)) {
 			$this->view = $this->routs[$requestPath][0];

@@ -20,8 +20,7 @@
 			<span></span>
 		</div>
 		<ul class="menu">
-			<?php $arMenu = include (DOCUMENT_ROOT . '/resources/includes/top_menu.php')?>
-			<?php foreach ($arMenu as $path => $name):?>
+			<?php foreach ($arData['top_menu'] as $path => $name):?>
 				<li class="menu-item"><a href="<?=$path?>" title="<?=$name?>"><?=$name?></a></li>
 			<?php endforeach;?>
 		</ul>

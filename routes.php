@@ -5,7 +5,7 @@ return [
 	['/', 'main', '', '', 'Главная сайта'],
 	['/about/', 'about', '', '', 'О нас'],
 	['/rooms/', 'rooms', '\MyProject\classes\Rooms', 'getRooms', 'Номера'],
-	['/room/', 'room/detail', '', '', 'Номер'],
+	['/room/', 'rooms/detail', '\MyProject\classes\Rooms', 'getRoomDetail', 'Номер'],
 	['/gallery/', 'gallery', '', '', 'Галерея'],
 	['/contacts/', 'contacts', '', 'Контакты'],
 
@@ -16,5 +16,7 @@ return [
 //	['/admin/explorer/', 'admin/explorer', '\MyProject\classes\Admin', ''],
 //	['/admin/users/', 'admin/users', '', ''],
 
-	['/test/', 'test', '\MyProject\classes\Test', 'test'],
+	//авторизация
+	['/logout/', '', '\MyProject\classes\User', 'logout'],
+	['/auth/', 'auth', '\MyProject\classes\User', 'auth'],//todo
 ];

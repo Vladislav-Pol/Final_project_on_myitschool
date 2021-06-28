@@ -6,12 +6,21 @@ namespace MyProject\classes;
 
 class User
 {
-	public static function getGroups()
+	public function check($arParams)
+	{
+		$arData = [];
+		$arData['user']['auth'] = $this->checkAuth();
+		$arData['user']['groups'] = $this->getGroups();
+
+		return $arData;
+	}
+
+	protected function getGroups()
 	{
 		return ($_SESSION['user']['groups']) ?? [];
 	}
 
-	public static function checkAuth()
+	protected function checkAuth()
 	{
 		if (!$_COOKIE['auth']) {
 			return false;
@@ -21,16 +30,16 @@ class User
 		return $_SESSION['user']['auth'];
 	}
 
-	public static function logout()
+	public function logout()
 	{
 		session_start();
 		unset($_COOKIE['auth'], $_SESSION['user']);
 		header('Location: ./');
 	}
 
-	public static function checkAccess()
+	public function checkAccess()
 	{
-		$userGroups = self::getGroups();
+		$userGroups = $this->getGroups();
 		if(!in_array('admin', $userGroups)){
 			header('Location: /');
 			die();

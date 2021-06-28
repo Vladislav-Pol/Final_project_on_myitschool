@@ -117,9 +117,9 @@ class Admin
 
 	public function __construct($arParams)
 	{
+		$obUser = new User;
+		$obUser->checkAccess();
 		$this->arData['path'] = $arParams['path'] ?? "";
 		$this->arData['fullPath'] = DOCUMENT_ROOT . $this->arData['path'] . "/";
-
-//		User::checkAccess();  todo реализовать авторизацию и раскоментировать
 	}
 }

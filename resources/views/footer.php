@@ -23,5 +23,7 @@
 		<div class="separator"></div>
 	</div>
 </footer>
+<script src="/resources/js/jquery_v3.6.0.js"></script>
+<script src="/resources/js/script.js"></script>
 </body>
 </html>

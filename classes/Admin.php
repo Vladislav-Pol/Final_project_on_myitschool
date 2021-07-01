@@ -118,7 +118,10 @@ class Admin
 	public function __construct($arParams)
 	{
 		$obUser = new User;
-		$obUser->checkAccess();
+		if($obUser->checkAccess()){
+			header('Location: /');
+			die();
+		}
 		$this->arData['path'] = $arParams['path'] ?? "";
 		$this->arData['fullPath'] = DOCUMENT_ROOT . $this->arData['path'] . "/";
 	}

@@ -6,6 +6,8 @@ namespace MyProject\classes;
 
 abstract class Abstruct_DB
 {
+	protected $dbh;
+
 	private static $instances = [];
 
 	/**
@@ -116,6 +118,15 @@ abstract class Abstruct_DB
 			$arResult[] = $row[0];
 		}
 		return $arResult;
+	}
+
+	public function prepareParams($arParams)
+	{
+		$connection = $this->dbh;
+		foreach ($arParams as $key => $value){
+			$arParams[$key] = $connection->quote($value);
+		}
+		return $arParams;
 	}
 
 	protected function __construct()

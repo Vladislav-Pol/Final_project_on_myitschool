@@ -10,7 +10,7 @@
 		<div class="rooms_list">
 			<?php foreach($arData['rooms'] as $room):?>
 				<div class="room_item">
-					<a href="/room/<?=$room['id']?>/"><img class="head_title" src="<?=$room['photo']?>" alt="Room photo"></a>
+					<a href="/room/<?=$room['id']?>/"><img class="head_image" src="<?=$room['photo']?>" alt="Room photo"></a>
 					<div class="description">
 						<a href="/room/<?=$room['id']?>/"><h2><?=$room['name']?></h2></a>
 						<p><?=$room['description']?></p>
@@ -19,7 +19,11 @@
 							<li>Кровати</li>
 						</ul>
 						<div class="description_separator"></div>
-						<div class="service_icons">{foreach icon <img src="#" alt="#">}</div>
+						<div class="service_icons">
+							<?php foreach (['conditioner', 'bathtub', 'shower', 'fan', 'fridge'] as $class => $name): ?>
+								<div class="icon <?=$name?>" title="<?=$name?>"></div>
+							<?php endforeach; ?>
+						</div>
 					</div>
 					<div class="item_separator"></div>
 					<div class="price"></div>

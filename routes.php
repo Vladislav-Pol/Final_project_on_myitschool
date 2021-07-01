@@ -17,6 +17,10 @@ return [
 //	['/admin/users/', 'admin/users', '', ''],
 
 	//авторизация
+	['/registration/', 'registration', '', ''],
+	['/auth/', 'authorization', '', ''],
+	//POST
+	['/registration/new/', 'registration/new', '\MyProject\classes\User', 'addNewUser'],
+	['/auth/login/', 'auth/login', '\MyProject\classes\User', 'auth'],//todo
 	['/logout/', '', '\MyProject\classes\User', 'logout'],
-	['/auth/', 'auth', '\MyProject\classes\User', 'auth'],//todo
 ];

@@ -12,6 +12,10 @@ class Rout implements RoutInterface
 
 	public function start($requestPath, $requestData)
 	{
+		if (session_status() !== 'PHP_SESSION_ACTIVE') {
+			session_start();
+		}
+
 		$arData = [];
 
 		$obUser = new User;

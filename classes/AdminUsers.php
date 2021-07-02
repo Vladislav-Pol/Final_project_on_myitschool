@@ -32,7 +32,7 @@ class AdminUsers
 			die;
 		}
 
-		return $arResult;
+		return [];
 	}
 
 	public function __construct()

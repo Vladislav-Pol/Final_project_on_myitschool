@@ -38,3 +38,25 @@ $('#btn_registration').click(function () {
     })
 })
 
+//Отправка данных формы обратной связи
+$('#btn_send_contact_message').click(function () {
+    $('.error').remove();
+    $.ajax({
+        type: "POST",
+        url: "/contacts/new_message/",
+        dataType: "json",
+        data: $('#contact_message').serialize(),
+        success: function (data) {
+            if(data.was_send){
+                $('#contact_message')[0].reset();
+                $('#contact_was_send').addClass('no_hidden');
+            } else{
+                $('#contact_was_send').removeClass('no_hidden');
+                for (let key in data) {
+                    $(`#${key}`).after(`<p class="error">${data[key]}</p>`);
+                }
+            }
+        }
+    })
+})
+

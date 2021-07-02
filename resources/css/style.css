@@ -227,6 +227,10 @@ main {
     border: 2px solid #272E38;
 }
 
+.left_half .no_hidden{
+    display: inline-block;
+}
+
 textarea.form_item {
     height: 85px;
 }
@@ -537,5 +541,7 @@ footer
     background-color: white;
 }
 
-
+.right_half p{
+    padding-left: 25px;
+}
 

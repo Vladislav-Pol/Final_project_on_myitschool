@@ -20,7 +20,8 @@ return [
 	['/registration/', 'registration', '', ''],
 	['/auth/', 'authorization', '', ''],
 	//POST
-	['/registration/new/', 'registration/new', '\MyProject\classes\User', 'addNewUser'],
-	['/auth/login/', 'auth/login', '\MyProject\classes\User', 'auth'],//todo
+	['/registration/new/', '', '\MyProject\classes\User', 'addNewUser'],
+	['/auth/login/', '', '\MyProject\classes\User', 'auth'],
 	['/logout/', '', '\MyProject\classes\User', 'logout'],
+	['/contacts/new_message/', '', '\MyProject\classes\Mail', 'sendContactMessage'],
 ];

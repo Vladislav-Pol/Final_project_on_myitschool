@@ -4,16 +4,16 @@
 	</div>
 	<div class="description">Если у вас есть вопросы, пожалуйста, свяжитесь с нами по телефону, электронной почте или заполните контактную форму.  Всегда рады вам!</div>
 </div>
-<form class="form" action="./" name="contact_us" method="post">
+<form class="form" id="contact_message" action="#" name="contact_us" method="post">
 	<div class="left_half">
-		<input class="form_item" name="name" type="text" placeholder="Имя">
-		<input class="form_item" name="email" type="email" placeholder="Эл. почта">
-		<input class="form_item" name="telephone" type="tel" placeholder="Телефон">
-		<span class="form_item" hidden>Информация отправлена. Спасибо!</span>
+		<input class="form_item" id="contact_name" name="name" type="text" placeholder="Имя">
+		<input class="form_item" id="contact_email" name="email" type="email" placeholder="Эл. почта">
+		<input class="form_item" id="contact_phone" name="telephone" type="tel" placeholder="Телефон">
+		<span class="form_item" id="contact_was_send" hidden>Информация отправлена. Спасибо!</span>
 	</div><!--
 	--><div class="right_half">
-		<textarea class="form_item" name="message" placeholder="Добавьте сообщение..."></textarea>
-		<button class="form_item button" type="submit">Отправить</button>
+		<textarea class="form_item" id="contact_message_text" name="message" placeholder="Добавьте сообщение..."></textarea>
+		<button id="btn_send_contact_message" class="form_item button" type="button">Отправить</button>
 	</div>
 </form>
 <div class="contact_info">

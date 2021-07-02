@@ -7,6 +7,9 @@ RewriteRule (.*) $1/ [L]
 RewriteCond %{REQUEST_URI} ^/room/[\w^\/]+/$
 RewriteRule ^(room/)(.*)/$ index.php?page=/$1&room_code=$2 [QSA]
 
+RewriteCond %{REQUEST_URI} ^/admin/users/edit_user/[\w^\/]+/$
+RewriteRule ^(admin/users/edit_user/)(.*)/$ index.php?page=/$1&user_login=$2 [QSA]
+
 RewriteCond %{REQUEST_URI} !/resources/(css.*)|(js.*)|(images.*)
 RewriteCond %{REQUEST_URI} !/tmp/.*
 RewriteRule (.*) index.php?page=/$1& [QSA]

@@ -41,4 +41,11 @@ class DBUsers extends Abstruct_DB
 
 		return $arResult;
 	}
+
+	public function getUser($arParams)
+	{
+		$arResult['edit_user'] = $this->get('users_table', ['id', 'login', 'email', 'name', 'groups_'], [['login', '=', $arParams["user_login"]]])[0];
+
+		return $arResult;
+	}
 }

@@ -9,7 +9,7 @@
 <div class="main content users">
 	<?php foreach($arData['users'] as $user):?>
 		<div class="user_item">
-			<a href="#"><h3><?=$user['name']?></h3></a>
+			<a href="/admin/users/edit_user/<?=$user['login']?>"><h3><?=$user['name']?></h3></a>
 			<p>ID пользователя: <?=$user['id']?></p>
 			<p>Логин пользователя: <?=$user['login']?></p>
 			<p>Email пользователя: <?=$user['email']?></p>

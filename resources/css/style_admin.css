@@ -92,3 +92,14 @@ button:hover, .button:hover{
     resize: none;
     white-space: pre;
 }
+
+.main.content.users{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.main.content.users .user_item{
+    margin: 15px;
+}
+

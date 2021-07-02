@@ -24,7 +24,7 @@ class Rout implements RoutInterface
 
 		$arData['top_menu'] = include (DOCUMENT_ROOT . '/resources/includes/top_menu.php') ?? [];
 		if ($arData['user']['auth']){
-			if (in_array('admin', $arData['user']['groups'])) {
+			if (in_array('admin', $arData['user']['groups_'])) {
 				$arData['top_menu']['/admin/'] = 'Админка';
 			}
 			$arData['top_menu']['/logout/'] = 'Выйти';

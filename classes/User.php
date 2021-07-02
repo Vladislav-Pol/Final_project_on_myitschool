@@ -25,14 +25,14 @@ class User
 	{
 		$arData = [];
 		$arData['user']['auth'] = $this->checkAuth();
-		$arData['user']['groups'] = $this->getGroups();
+		$arData['user']['groups_'] = $this->getGroups();
 
 		return $arData;
 	}
 
 	protected function getGroups()
 	{
-		return ($_SESSION['user']['groups']) ?? [];
+		return ($_SESSION['user']['groups_']) ?? [];
 	}
 
 	public function checkAccess()
@@ -98,7 +98,7 @@ class User
 					$_SESSION['auth'] = true;
 					$_SESSION['user_login'] = $data['login'];
 					$_SESSION['user_name'] = (string)$userData['name'];
-					$_SESSION['user']['groups'] = [$userData['groups']];
+					$_SESSION['user']['groups_'] = [$userData['groups_']];
 					$userData['sessionId'] = $sessionId;
 					$obDBUsers->updateUser($userData);
 					$result = ['auth' => true];

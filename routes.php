@@ -10,10 +10,12 @@ return [
 	['/contacts/', 'contacts', '', '', 'Контакты'],
 
 	//страницы адмиинистративного раздела
+	['/admin/', 'admin', '', ''],
 	['/admin/explorer/', 'admin/explorer', '\MyProject\classes\Admin', 'explorer'],
 	['/admin/explorer/create_edit/', 'admin/explorer/create_edit', '\MyProject\classes\Admin', 'createEdit'],
 	['/admin/explorer/uploadFile/', 'admin/explorer/uploadFile', '\MyProject\classes\Admin', 'uploadFile'],
 	['/admin/explorer/delete/', 'admin/explorer', '\MyProject\classes\Admin', 'delete'],
+	['/admin/users/', 'admin/users', '\MyProject\classes\AdminUsers', 'users'],
 
 	//авторизация
 	['/registration/', 'registration', '', '', 'Регистрация'],

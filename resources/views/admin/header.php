@@ -18,8 +18,8 @@
 <div class="header content">
 	<div class="logo"><a href="/">Мой сайт</a></div>
 	<ul class="nav">
-		<li><a href="/admin/explorer">Файловая стуктура сайта</a></li>
-		<li><a href="/admin/users">Пользователи</a></li>
+		<li><a href="/admin/explorer/">Файловая стуктура сайта</a></li>
+		<li><a href="/admin/users/">Пользователи</a></li>
 	</ul>
 	<a href="./?logout" class="transform">Выйти</a>
 </div>

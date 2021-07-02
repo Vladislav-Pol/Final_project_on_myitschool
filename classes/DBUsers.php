@@ -34,4 +34,11 @@ class DBUsers extends Abstruct_DB
 		$result = $connection->exec($query);
 		return $result;
 	}
+
+	public function getUsers($arParams)
+	{
+		$arResult['users'] = $this->get('users_table', ['id', 'login', 'email', 'name', 'groups_']);
+
+		return $arResult;
+	}
 }

@@ -7,7 +7,7 @@ return [
 	['/rooms/', 'rooms', '\MyProject\classes\Rooms', 'getRooms', 'Номера'],
 	['/room/', 'rooms/detail', '\MyProject\classes\Rooms', 'getRoomDetail', 'Номер'],
 	['/gallery/', 'gallery', '', '', 'Галерея'],
-	['/contacts/', 'contacts', '', 'Контакты'],
+	['/contacts/', 'contacts', '', '', 'Контакты'],
 
 	//страницы адмиинистративного раздела
 	['/admin/explorer/', 'admin/explorer', '\MyProject\classes\Admin', 'explorer'],
@@ -17,8 +17,8 @@ return [
 //	['/admin/users/', 'admin/users', '', ''],
 
 	//авторизация
-	['/registration/', 'registration', '', ''],
-	['/auth/', 'authorization', '', ''],
+	['/registration/', 'registration', '', '', 'Регистрация'],
+	['/auth/', 'authorization', '', '', 'Авторизация'],
 	//POST
 	['/registration/new/', '', '\MyProject\classes\User', 'addNewUser'],
 	['/auth/login/', '', '\MyProject\classes\User', 'auth'],

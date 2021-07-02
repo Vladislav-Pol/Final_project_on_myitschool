@@ -11,8 +11,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/resources/css/style_admin.css">
-<!--	<link rel="stylesheet" href="/css/media.css">-->
-	<title><?= isset($_GET["id"]) ? $arPages[$_GET["id"]]["name"] : "Treehouse" ?></title> <!--todo разобрать переменную и проверить страницу-->
+<!--	<link rel="stylesheet" href="/resources/css/media_admin.css">-->
+	<title><?= isset($_GET["id"]) ? $arPages[$_GET["id"]]["name"] : "Treehouse" ?></title>
 </head>
 <body>
 <div class="header content">

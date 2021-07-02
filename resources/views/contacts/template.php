@@ -25,4 +25,4 @@
 		<h2>Адрес</h2>
 		<div class="address_text"><?php include DOCUMENT_ROOT . "/resources/includes/address.html"?></div>
 	</div>
-</div><!--todo сделать обработку формы обратной связи-->
+</div>

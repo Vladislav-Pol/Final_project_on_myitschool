@@ -10,10 +10,10 @@
 		<div class="rooms_list">
 			<?php foreach ($arData['rooms'] as $room): ?>
 				<div class="room_item">
-					<a href="/room/<?= $room['id'] ?>/"><img class="head_image" src="<?= $room['photo'] ?>"
+					<a href="/room/<?= $room['code'] ?>/"><img class="head_image" src="<?= $room['photo'] ?>"
 															 alt="Room photo"></a>
 					<div class="description">
-						<a class="room_name" href="/room/<?= $room['id'] ?>/"><h2><?= $room['name'] ?></h2></a>
+						<a class="room_name" href="/room/<?= $room['code'] ?>/"><h2><?= $room['name'] ?></h2></a>
 						<p><?= $room['description'] ?></p>
 						<ul>
 							<li>Площадь</li>

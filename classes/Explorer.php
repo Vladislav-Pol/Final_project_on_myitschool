@@ -73,7 +73,7 @@ class Explorer
 	{
 		if (file_exists($oldElementName) && !file_exists($newElementName)
 		&& rename($oldElementName, $newElementName)){
-			header("Location: /admin/explorer/?path={$_REQUEST['path']}"); //todo путь для редиректа передать в функцию
+			header("Location: /admin/explorer/?path={$_REQUEST['path']}");
 			die();
 		}
 	}
@@ -86,6 +86,9 @@ class Explorer
 		}
 
 		file_put_contents($fullPath . $newName, $fileContent);
+
+		header("Location: /admin/explorer/?path={$_REQUEST['path']}");
+		die();
 	}
 
 // --- Удаление элемента ---
@@ -109,7 +112,7 @@ class Explorer
 	}
 
 //Сохранение загруженного файла
-	public static function saveUploadFile($fullPath)
+	public function saveUploadFile($fullPath)
 	{
 		if (!empty($_FILES['uploadFiles']['name'])) {
 			$arFiles = $_FILES['uploadFiles'];
@@ -124,7 +127,11 @@ class Explorer
 						array_splice($arFullFileName, $posToAdd, 0, ["_1"]);
 						$fullFileName = implode("", $arFullFileName);
 					};
-					move_uploaded_file($tmpPath, $fullFileName);
+					$successSave = move_uploaded_file($tmpPath, $fullFileName);
+					if($successSave){
+						header("Location: /admin/explorer/?path=" . $_REQUEST['path']);
+						die;
+					}
 				}
 			}
 		}

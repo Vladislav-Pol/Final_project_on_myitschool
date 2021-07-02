@@ -9,4 +9,4 @@ RewriteRule ^(room/)(.*)/$ index.php?page=/$1&room_code=$2 [QSA]
 
 RewriteCond %{REQUEST_URI} !/resources/(css.*)|(js.*)|(images.*)
 RewriteCond %{REQUEST_URI} !/tmp/.*
-RewriteRule (.*) index.php?page=/$1 [QSA]
+RewriteRule (.*) index.php?page=/$1& [QSA]

@@ -74,7 +74,7 @@ class Admin
 			$heading = 'Редактирование элемента';
 		}
 
-//Изменение элемента
+		//Изменение элемента
 		if (isset($arParams['saveElement'])) {
 			if ($arParams['extension'] == 'folder')
 				Explorer::renameFolder($fullPath . $arParams['oldName'], $fullPath . $arParams['fileName']);
@@ -86,13 +86,8 @@ class Admin
 				Explorer::createNewFolder($fullPath, $arParams['fileName']);
 			else
 				Explorer::createNewFile($fullPath, $arParams['fileName'], $arParams['extension'], $arParams['fileContent'] ?? "");
-		} //Удаление папки или файла
-		elseif (isset($arParams['del'])) {
-			Explorer::deleteElement($fullPath . $arParams['del']);
-		} //Запись загруженного файла
-		elseif (isset($arParams['isUpload'])) {
-			require_once './functions/upload.php';
-			Explorer::saveUploadFile($fullPath);
+			header("Location: /admin/explorer/?path=" . $arParams['path']);
+			die;
 		}
 
 		$saveType = isset($arParams['create']) ? 'saveNewElement' : 'saveElement';
@@ -112,7 +107,16 @@ class Admin
 		if (isset($arParams['isUpload'])) {
 			Explorer::saveUploadFile($this->arData['fullPath']);
 		}
+		return $this->arData;
+	}
 
+	public function delete($arParams)
+	{
+		if (isset($arParams['del'])){
+			Explorer::deleteElement($this->arData['fullPath'] . $arParams['del']);
+		}
+//		return $this->arData;
+		return $this->explorer();
 	}
 
 	public function __construct($arParams)

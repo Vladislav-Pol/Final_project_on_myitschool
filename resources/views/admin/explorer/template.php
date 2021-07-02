@@ -15,7 +15,7 @@
 			<tr>
 				<td class="actions">
 					<?php if($item['name'] != ".."):?>
-						<a href="/admin/explorer/?path=<?="{$arData['path']}&del={$item['name']}"?>"><img src="/resources/images/admin/delete.png" alt="delete"></a>
+						<a href="/admin/explorer/delete/?path=<?="{$arData['path']}&del={$item['name']}"?>"><img src="/resources/images/admin/delete.png" alt="delete"></a>
 					<?php endif;?>
 					<?php if($item['canEdit']):?>
 						<a href="/admin/explorer/create_edit/?path=<?="{$arData['path']}&edit={$item['name']}"?>"><img src="/resources/images/admin/edit.png" alt="edit"></a>

@@ -21,5 +21,5 @@
 		<li><a href="/admin/explorer/">Файловая стуктура сайта</a></li>
 		<li><a href="/admin/users/">Пользователи</a></li>
 	</ul>
-	<a href="./?logout" class="transform">Выйти</a>
+	<a href="/logout/" class="transform">Выйти</a>
 </div>

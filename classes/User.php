@@ -65,7 +65,7 @@ class User
 			$newUser['email'] = $this->email;
 			$newUser['name'] = $this->name;
 
-			$obDBUsers = DBUsers::getInstance();
+			$obDBUsers = new DBUsers;
 			if ($obDBUsers->addUser($newUser)) {
 				echo json_encode(['registr' => true]);
 				die;
@@ -85,7 +85,7 @@ class User
 			$result = ['auth' => true];
 		}else {
 
-			$obDBUsers = DBUsers::getInstance();
+			$obDBUsers = new DBUsers;
 			$userData = $obDBUsers->get('users_table', [], [['login', '=', $data['login']]])[0];
 
 			if (!empty($userData)) {
@@ -116,7 +116,7 @@ class User
 	 */
 	public function logout()
 	{
-		$obDBUsers = DBUsers::getInstance();
+		$obDBUsers = new DBUsers;
 
 		$userByCookie = $obDBUsers->get('users_table', ['id'], [['cookie', '=', $_COOKIE['key']]])[0];
 		$userBySession = $obDBUsers->get('users_table', ['id'], [['sessionId', '=', session_id()]])[0];
@@ -180,7 +180,7 @@ class User
 	{
 		$result = true;
 
-		$obDBUsers = DBUsers::getInstance();
+		$obDBUsers = new DBUsers;
 		$unicLogin = empty($obDBUsers->get('users_table', ['id'], [['login', '=', $this->login]]));
 		$unicEmail = empty($obDBUsers->get('users_table', ['id'], [['email', '=', $this->email]]));
 

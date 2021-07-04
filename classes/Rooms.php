@@ -2,17 +2,17 @@
 
 
 namespace MyProject\classes;
-use \MyProject\classes\DB as DB;
+use \MyProject\classes\DBRooms;
 
 class Rooms
 {
-	protected $obDB;
+	protected $obDBRooms;
 
 	public function getRooms($arParams)
 	{
-		$arData['rooms'] = $this->obDB->get('rooms_table');
+		$arData['rooms'] = $this->obDBRooms->get('rooms_table');
 		foreach ($arData['rooms'] as $key => $room){
-			$photo = $this->obDB->get('photos_table', ['photo'], [['room_id', '=', $room['id']]]);
+			$photo = $this->obDBRooms->get('photos_table', ['photo'], [['room_id', '=', $room['id']]]);
 			$arData['rooms'][$key]['photo'] = $photo[0]['photo'];
 		}
 		return $arData;
@@ -21,9 +21,9 @@ class Rooms
 	public function getRoomDetail($arParams)
 	{
 		$roomId = $arParams['room_code'];
-		$arData['rooms'] = $this->obDB->get('rooms_table', [], [['code', '=', $roomId]]);
+		$arData['rooms'] = $this->obDBRooms->get('rooms_table', [], [['code', '=', $roomId]]);
 		foreach ($arData['rooms'] as $key => $room){
-			$photo = $this->obDB->get('photos_table', ['photo'], [['room_id', '=', $room['id']]]);
+			$photo = $this->obDBRooms->get('photos_table', ['photo'], [['room_id', '=', $room['id']]]);
 			$arData['rooms'][$key]['photo'] = $photo[0]['photo'];
 		}
 		return $arData;
@@ -31,6 +31,6 @@ class Rooms
 
 	public function __construct()
 	{
-		$this->obDB = DB::getInstance();
+		$this->obDBRooms = new DBRooms;
 	}
 }

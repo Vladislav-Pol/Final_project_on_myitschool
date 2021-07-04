@@ -2,9 +2,9 @@
 
 
 namespace MyProject\classes;
+use \MyProject\classes\DBInterface;
 
-
-abstract class Abstruct_DB
+abstract class Abstruct_DB implements DBInterface
 {
 	protected $dbh;
 
@@ -95,6 +95,23 @@ abstract class Abstruct_DB
 
 	}
 
+	////////////////////////
+	public function add($table, $arFields = [])
+	{
+		// TODO: Implement add() method.
+	}
+
+	public function update($table, $arIDs = [], $arFields = [])
+	{
+		// TODO: Implement update() method.
+	}
+
+	public function delete($table, $arIDs = [])
+	{
+		// TODO: Implement delete() method.
+	}
+	////////////////////////
+
 	protected function getTablesName($db)
 	{
 		$arResult = [];
@@ -129,33 +146,15 @@ abstract class Abstruct_DB
 		return $arParams;
 	}
 
-	protected function __construct()
+	public function __construct()
 	{
 		$this->config = require $_SERVER['DOCUMENT_ROOT'] . '/db_config.php';
-		$this->dbh = new \PDO('mysql:host=' . $this->config['hostname'] . ';dbname=' . $this->config['database'] . ';port=' . $this->config['port'], $this->config['username'], $this->config['password']);
+
+		$params = 'mysql:host=' . $this->config['hostname']
+			. ';dbname=' . $this->config['database']
+			. ';port=' . $this->config['port'];
+
+		$this->dbh = new \PDO($params, $this->config['username'], $this->config['password']);
 	}
 
-	public function __destruct()
-	{
-		$this->dbh = null;
-	}
-
-	protected function __clone()
-	{
-	}
-
-	public function __wakeup()
-	{
-		throw new \Exception("Cannot unserialize singleton");
-	}
-
-	public static function getInstance()
-	{
-		$subclass = static::class;
-		if (!isset(self::$instances[$subclass])) {
-
-			self::$instances[$subclass] = new static();
-		}
-		return self::$instances[$subclass];
-	}
 }

@@ -37,6 +37,6 @@ class AdminUsers
 
 	public function __construct()
 	{
-		$this->obDBUsers = DBUsers::getInstance();
+		$this->obDBUsers = new DBUsers;
 	}
 }

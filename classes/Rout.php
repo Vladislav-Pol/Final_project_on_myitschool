@@ -1,10 +1,9 @@
 <?php
 namespace MyProject\classes;
-use \MyProject\classes\RoutInterface;
 use \MyProject\classes\User;
 
 
-class Rout implements RoutInterface
+class Rout
 {
 	protected array $routs;
 

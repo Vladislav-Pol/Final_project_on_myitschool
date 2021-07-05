@@ -14,12 +14,48 @@ class User
 	public $name;
 	public $dateErrors;
 
+	protected DBInterface $obDBUsers;
+
 	protected $pregLogin = '/^[a-z0-9]{6,}$/i';
 	protected $pregPassword = '/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])(.{6,})/';
 	protected $pregEmail = '/^[a-z]([a-z0-9]*[-_.]?[a-z0-9]+)+@[a-z0-9]([a-z0-9]*[-_.]?[a-z0-9]+)+\.[a-z]{2,11}$/i';
 	protected $pregName = '/[a-z0-9а-я]{2,}/i';
 	protected $authLifeTime = 60 * 60 * 24 * 30;
 
+
+	public function getList($arParams)
+	{
+		return $this->obDBUsers->getUsers();
+	}
+
+	public function getItem($arParams)
+	{
+		return $this->obDBUsers->getUser($arParams);
+	}
+
+	public function editItem($arParams)
+	{
+		$arResult = $this->obDBUsers->updateUser($arParams);
+
+		if($arResult){
+			header("Location: /admin/users/");
+			die;
+		}
+
+		return [];
+	}
+
+	public function deleteItem($arParams)
+	{
+		$arResult = $this->obDBUsers->delete($arParams);
+
+		if($arResult){
+			header("Location: /admin/users/");
+			die;
+		}
+
+		return [];
+	}
 
 	public function check($arParams)
 	{
@@ -224,5 +260,8 @@ class User
 		return $result;
 	}
 
-
+	public function __construct()
+	{
+		$this->obDBUsers = new DBUsers;
+	}
 }

@@ -15,9 +15,10 @@ return [
 	['/admin/explorer/create_edit/', 'admin/explorer/create_edit', '\MyProject\classes\Admin', 'createEdit'],
 	['/admin/explorer/uploadFile/', 'admin/explorer/uploadFile', '\MyProject\classes\Admin', 'uploadFile'],
 	['/admin/explorer/delete/', 'admin/explorer', '\MyProject\classes\Admin', 'delete'],
-	['/admin/users/', 'admin/users', '\MyProject\classes\AdminUsers', 'users'],
-	['/admin/users/edit_user/', 'admin/users/edit_user', '\MyProject\classes\AdminUsers', 'edit_users'],
-	['/admin/users/edit/', '', '\MyProject\classes\AdminUsers', 'edit'],
+	['/admin/users/', 'admin/users', '\MyProject\classes\User', 'getList'],
+	['/admin/users/edit_user/', 'admin/users/edit_user', '\MyProject\classes\User', 'getItem'],
+	['/admin/users/edit/', '', '\MyProject\classes\User', 'editItem'],
+	['/admin/users/delete/', '', '\MyProject\classes\User', 'deleteItem'],
 
 	//авторизация
 	['/registration/', 'registration', '', '', 'Регистрация'],

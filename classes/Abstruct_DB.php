@@ -25,7 +25,7 @@ abstract class Abstruct_DB implements DBInterface
 		}
 
 		$arColumns = $this->getTableColumns($this->config['database'], $table);
-		if (!array_diff($arSelect, $arColumns) === []) {
+		if (array_diff($arSelect, $arColumns) !== []) {
 			return false;
 		}
 
@@ -95,22 +95,83 @@ abstract class Abstruct_DB implements DBInterface
 
 	}
 
-	////////////////////////
 	public function add($table, $arFields = [])
 	{
-		// TODO: Implement add() method.
+		$arTables = $this->getTablesName($this->config['database']);
+		if (!in_array($table, $arTables)) {
+			return false;
+		}
+
+		$arColumns = $this->getTableColumns($this->config['database'], $table);
+		if (array_diff(array_keys($arFields), $arColumns) !== []) {
+			return false;
+		}
+
+		$arFields = $this->prepareParams($arFields);
+
+		$strFields = '';
+		$strValues = '';
+		$separator = '';
+		foreach ($arFields as $field => $value) {
+			$strFields .= $separator . $field;
+			$strValues .= $separator . $value;
+			$separator = ', ';
+		}
+
+		$query = 'INSERT INTO ' . $table . ' (' . $strFields . ') VALUES (' . $strValues .  ')';
+
+		return $this->dbh->exec($query);
 	}
 
 	public function update($table, $arIDs = [], $arFields = [])
 	{
-		// TODO: Implement update() method.
+		$arTables = $this->getTablesName($this->config['database']);
+		if (!in_array($table, $arTables)) {
+			return false;
+		}
+
+		$arFields = $this->prepareParams($arFields);
+		$arIDs = $this->prepareParams($arIDs);
+
+		$arColumns = $this->getTableColumns($this->config['database'], $table);
+		if (array_diff(array_keys($arFields), $arColumns) !== []) {
+			return false;
+		}
+		if(!in_array(key($arIDs), $arColumns)){
+			return false;
+		}
+
+
+		$strFields = '';
+		$separator = '';
+		foreach ($arFields as $field => $value) {
+			$strFields .= $separator . $field . '=' . $value;
+			$separator = ', ';
+		}
+
+		$query = 'UPDATE ' . $table . ' SET ' . $strFields . ' WHERE ' . key($arIDs) . " = " . current($arIDs);
+
+		return $this->dbh->exec($query);
 	}
 
 	public function delete($table, $arIDs = [])
 	{
-		// TODO: Implement delete() method.
+		$arTables = $this->getTablesName($this->config['database']);
+		if (!in_array($table, $arTables)) {
+			return false;
+		}
+
+		$arIDs = $this->prepareParams($arIDs);
+
+		$arColumns = $this->getTableColumns($this->config['database'], $table);
+		if(!in_array(key($arIDs), $arColumns)){
+			return false;
+		}
+
+		$query = "DELETE FROM " . $table . " WHERE " . key($arIDs) . " = " . current($arIDs);
+
+		return $this->dbh->exec($query);
 	}
-	////////////////////////
 
 	protected function getTablesName($db)
 	{
@@ -125,7 +186,7 @@ abstract class Abstruct_DB implements DBInterface
 		return $arResult;
 	}
 
-	protected function getTableColumns($db, $table)
+	public function getTableColumns($db, $table)
 	{
 		$query = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='$db'  AND `TABLE_NAME`='$table';";
 

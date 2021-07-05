@@ -5,9 +5,11 @@
 		<a href="/admin/" class="button">Домой</a>
 <!--		<a href="/admin/users/new_user/" class="button">Создать нового пользователя</a>-->
 		<button name="save" form="edit_user">Сохранить</button>
+		<button name="delete" form="delete_user">Удалить</button>
 	</div>
 </div>
 <div class="main content users">
+	<form id="hidden" method="post" action="/admin/users/delete/"><input name="user_id" type="number" value="<?=$arData['edit_user']['id']?>"></form>
 	<form class="edit_user form" id="edit_user" action="/admin/users/edit" method="post">
 		<fieldset>
 			<legend></legend>
